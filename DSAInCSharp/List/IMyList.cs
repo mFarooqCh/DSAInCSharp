@@ -6,41 +6,20 @@ using System.Threading.Tasks;
 
 namespace DSAInCSharp.List
 {
-    public interface IMyList
+    public interface IMyList<T>
     {
-        public void Add(int number);
-        /// <summary>
-        /// Returns the first occurrence of the current number in the list.
-        /// </summary>
-        /// <returns></returns>
-        public int Get();
-        /// <summary>
-        /// Remove the element at current index and sets the current index to the previous element.
-        /// </summary>
-        public void Remove();
-        public bool Find(int number);
-        /// <summary>
-        /// Updates the first occurrence of the specified number in the list. 
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        public bool Update(int number);
-        /// <summary>
-        /// Returns the number of elements in the list.
-        /// </summary>
-        /// <returns></returns>
-        public int Size();
-        /// <summary>
-        /// Sets the value of current = current - 1
-        /// </summary>
-        public void Back();
-        /// <summary>
-        /// Sets the current index = 1
-        /// </summary>
-        public void Start();
-        /// <summary>
-        /// Sets the current = size 
-        /// </summary>
-        public void Stop();
+        T this[int index] { get; set; }  // Indexer
+        int IndexOf(T item);
+        void Insert(int index, T item);
+        void RemoveAt(int index);
+
+        //ICollection
+        int Count { get; }
+        bool IsReadOnly { get; }
+        void Add(T item);
+        void Clear();
+        bool Contains(T item);
+        void CopyTo(T[] array, int arrayIndex);
+        bool Remove(T item);
     }
 }
