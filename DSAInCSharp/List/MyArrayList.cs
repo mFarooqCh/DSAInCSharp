@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DSAInCSharp.List;
+﻿namespace DSAInCSharp.List;
 
 public sealed class MyArrayList<T> : IMyList<T>
 {
@@ -14,12 +8,12 @@ public sealed class MyArrayList<T> : IMyList<T>
     public MyArrayList(int capacity = 100)
     {
         _items = new T[capacity + 1];
-        _size = capacity;
     }
 
     public T this[int index]
     {
-        get {
+        get
+        {
             if (index < 0 || index >= _size)
                 throw new ArgumentOutOfRangeException(nameof(index));
             else
@@ -52,39 +46,67 @@ public sealed class MyArrayList<T> : IMyList<T>
         if (index < 0 || index > _size)
             throw new ArgumentOutOfRangeException(nameof(index));
         if (_size >= _items.Length)
-            //Resize();
+            Resize();
         _items[index] = item;
+        _size++;
     }
 
     public void RemoveAt(int index)
     {
-        throw new NotImplementedException();
-    }
+        if (index < 0 || index > _size)
+            throw new ArgumentOutOfRangeException(nameof(index));
+        _items[index] = default; // Clear the item at index
+        for (int i = index; i < _size - 1; i++)
+        {
+            _items[i] = _items[i + 1]; // Shift items to the left
+        }
 
-    public int Count { get; }
-    public bool IsReadOnly { get; }
+        _size--;
+    }
     public void Add(T item)
     {
-        throw new NotImplementedException();
+        if (_size >= _items.Length)
+        {
+            // Resize the array
+            Resize();
+        }
+        _items[_size] = item;
+        _size++;
+    }
+    private void Resize()
+    {
+        var newItems = new T[_items.Length * 2];
+        Array.Copy(_items, newItems, _size);
+        _items = newItems;
     }
 
     public void Clear()
     {
-        throw new NotImplementedException();
+        _items = new T[_items.Length]; // Reset the array
+        _size = 0; // Reset the size
     }
 
     public bool Contains(T item)
     {
-        throw new NotImplementedException();
-    }
+        for (int i = 0; i < _size; i++)
+        {
+            if (EqualityComparer<T>.Default.Equals(_items[i], item))
+            {
+                return true;
+            }
+        }
 
-    public void CopyTo(T[] array, int arrayIndex)
-    {
-        throw new NotImplementedException();
+        return false;
     }
 
     public bool Remove(T item)
     {
-        throw new NotImplementedException();
+        var index = IndexOf(item);
+        if (index >= 0)
+        {
+            RemoveAt(index);
+            return true;
+        }
+        return false;
     }
 }
