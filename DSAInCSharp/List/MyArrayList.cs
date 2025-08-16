@@ -63,6 +63,17 @@ public sealed class MyArrayList<T> : IMyList<T>
 
         _size--;
     }
+
+    public bool Next()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Start()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Add(T item)
     {
         if (_size >= _items.Length)
@@ -108,5 +119,15 @@ public sealed class MyArrayList<T> : IMyList<T>
             return true;
         }
         return false;
+    }
+
+    public void Remove()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int Length()
+    {
+        throw new NotImplementedException();
     }
 }
