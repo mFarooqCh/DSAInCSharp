@@ -2,7 +2,7 @@
 {
     public interface IMyList<T>
     {
-        T this[int index] { get; set; }  // Indexer
+        //T this[int index] { get; set; }  // Indexer
         int IndexOf(T item);
         void Insert(int index, T item);
         void RemoveAt(int index);

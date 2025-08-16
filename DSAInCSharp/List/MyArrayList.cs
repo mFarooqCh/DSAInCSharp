@@ -10,22 +10,22 @@ public sealed class MyArrayList<T> : IMyList<T>
         _items = new T[capacity + 1];
     }
 
-    public T this[int index]
-    {
-        get
-        {
-            if (index < 0 || index >= _size)
-                throw new ArgumentOutOfRangeException(nameof(index));
-            else
-                return _items[index];
-        }
-        set
-        {
-            if (index < 0 || index >= _size)
-                throw new ArgumentOutOfRangeException(nameof(index));
-            _items[index] = value;
-        }
-    }
+    //public T this[int index]
+    //{
+    //    get
+    //    {
+    //        if (index < 0 || index >= _size)
+    //            throw new ArgumentOutOfRangeException(nameof(index));
+    //        else
+    //            return _items[index];
+    //    }
+    //    set
+    //    {
+    //        if (index < 0 || index >= _size)
+    //            throw new ArgumentOutOfRangeException(nameof(index));
+    //        _items[index] = value;
+    //    }
+    //}
 
     public int IndexOf(T item)
     {
